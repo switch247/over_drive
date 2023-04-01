@@ -6,12 +6,12 @@ Here's the updated README for the "Over Drive" project with the requested change
 
 Over Drive is a cloud storage and file management platform, designed to provide users with a seamless and efficient experience, replicating core functionalities of [Google Drive](https://drive.google.com/drive/my-drive). It integrates AI-powered features to enhance search and file organization, making file management faster and smarter. Built with modern web technologies, Over Drive offers a responsive and user-friendly interface across devices.
 
-### Demo
+<!-- ### Demo
 
 ![Desktop mode](./public/desktop.png)
 ![Desktop mode](./public/desktop2.png)
 ![Tablet mode](./public/tablet.png)
-![Mobile Mode](./public/mobile.png)
+![Mobile Mode](./public/mobile.png) -->
 
 ### Features
 
