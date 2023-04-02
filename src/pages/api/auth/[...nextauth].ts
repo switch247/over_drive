@@ -25,6 +25,12 @@ export const authOptions: NextAuthOptions = {
         id: user.id,
       },
     }),
+    jwt: ({ token, user }) => {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
   },
   adapter: PrismaAdapter(db),
   providers: [
@@ -55,9 +61,19 @@ export const authOptions: NextAuthOptions = {
 
   ],
 
+  session: {
+    strategy: "jwt",
+  },
+  pages: {
+    signIn: "/auth/signin",
+  },
+
 };
 
 
 
 export default NextAuth(authOptions);
+
+const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST }
 

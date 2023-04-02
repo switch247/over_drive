@@ -1,4 +1,5 @@
 "use client";
+import 'tailwindcss/tailwind.css';
 
 import Link from "next/link";
 import { useState } from "react";
@@ -58,7 +59,7 @@ export default function LoginForm() {
             </div>
           )}
 
-          <Link className="text-sm mt-3 text-right" href={"/register"}>
+          <Link className="text-sm mt-3 text-right" href={"/auth/register"}>
             Don't have an account? <span className="underline">Register</span>
           </Link>
         </form>
