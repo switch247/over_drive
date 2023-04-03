@@ -1,12 +1,24 @@
 {
-    "rewrites": [
-        {
-            "source": "/:path((?!api/|_next/static|_next/image|favicon.ico).*)",
-            "destination": "/"
-        },
-        {
-            "source": "/api/:path*",
-            "destination": "/api/:path*"
-        }
+    "version": 2,
+    "builds": [
+      {
+        "src": "next.config.js",
+        "use": "@vercel/next"
+      },
+      {
+        "src": "pages/api/**/*.ts",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "/api/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/$1"
+      }
     ]
-}
+  }
+  
