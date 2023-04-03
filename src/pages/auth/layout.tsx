@@ -1,5 +1,4 @@
 import { type AppType } from "next/app";
-import "@/styles/globals.css";
 const MyApp: AppType<{ session: any | null }> = ({
   Component,
   pageProps: { session, ...pageProps },

@@ -16,6 +16,7 @@
     "@t3-oss/env-nextjs": "^0.6.0",
     "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
+    "css-loader": "^7.1.2",
     "firebase": "^10.4.0",
     "next": "^13.4.19",
     "next-auth": "^4.23.0",
@@ -23,6 +24,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
     "react-spinners": "^0.13.8",
+    "style-loader": "^4.0.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {

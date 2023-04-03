@@ -8,8 +8,9 @@ await import("./src/env.mjs");
 const config = {
   // output: 'export',
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
-  // reactStrictMode: true,
+  reactStrictMode: true,
 
+  
   /**
    * If you are using `appDir` then you must comment the below `i18n` config out.
    *
