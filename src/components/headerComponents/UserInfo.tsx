@@ -4,6 +4,7 @@ import { PiSignOutBold } from "react-icons/pi";
 import { AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
+import { FaUserCircle } from "react-icons/fa";
 
 function UserInfo({ setDisplayUserInfo }: UserInfoProps) {
   const { data: session } = useSession();
@@ -21,14 +22,15 @@ function UserInfo({ setDisplayUserInfo }: UserInfoProps) {
       </button>
       <p>{session?.user.email}</p>
       <div className="h-20 w-20 rounded-full border">
-        <Image
-          src={session?.user.image as string}
+        {session?.user.image ? (<Image
+          src={session?.user.image ? session.user.image : "/logo.png"}
           className="h-full w-full rounded-full object-center"
           height={500}
           width={500}
           draggable={false}
           alt="avatar"
-        />
+        />) : (
+          <FaUserCircle className="h-full w-full" />)}
       </div>
       <h2 className="tablet:text-2xl text-xl font-normal">
         Hi, {session?.user.name}!

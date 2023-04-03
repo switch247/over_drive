@@ -1,6 +1,4 @@
 "use client";
-import 'tailwindcss/tailwind.css';
-
 import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
@@ -10,11 +8,13 @@ export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    setLoading(true); // Start loading
 
     try {
       const res = await signIn("credentials", {
@@ -25,12 +25,14 @@ export default function LoginForm() {
 
       if (res!.error) {
         setError("Invalid Credentials");
+        setLoading(false); // Stop loading if error occurs
         return;
       }
 
-      router.replace("dashboard");
+      router.push("/drive/my-drive");
     } catch (error) {
       console.log(error);
+      setLoading(false); // Stop loading if there's an error
     }
   };
 
@@ -44,14 +46,19 @@ export default function LoginForm() {
             onChange={(e) => setEmail(e.target.value)}
             type="text"
             placeholder="Email"
+            value={email}
           />
           <input
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="Password"
+            value={password}
           />
-          <button className="bg-green-600 text-white font-bold cursor-pointer px-6 py-2">
-            Login
+          <button
+            className="bg-green-600 text-white font-bold cursor-pointer px-6 py-2"
+            disabled={loading} // Disable the button while loading
+          >
+            {loading ? "Logging in..." : "Login"} {/* Conditional content */}
           </button>
           {error && (
             <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">

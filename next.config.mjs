@@ -6,6 +6,7 @@ await import("./src/env.mjs");
 
 /** @type {import("next").NextConfig} */
 const config = {
+  
   // output: 'export',
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
   reactStrictMode: true,

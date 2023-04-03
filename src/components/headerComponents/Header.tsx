@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import Image from 'next/image';
 import { signIn, useSession } from "next-auth/react";
 import UserInfo from "./UserInfo";
 import Link from "next/link";
@@ -13,11 +13,12 @@ function Header() {
   if (session === null) {
     signIn();
   }
+  // console.log("session:", session);
   return (
     <header className="relative flex h-16 w-screen items-center justify-between px-5 py-2">
       <div className="w-16 pl-1 duration-500 tablet:w-60">
         <Link href={"/"} className="flex w-fit items-center space-x-2 p-1">
-          <Image
+          <img
             src="/logo.png"
             width={500}
             height={500}
@@ -38,9 +39,14 @@ function Header() {
         }}
         className="ml-3 h-8 w-8 cursor-pointer overflow-hidden rounded-full"
       >
-        {session ? (
+        {session && session?.user.image ? (
           <Image
-            src={session?.user.image as string}
+            onError={(e) => {
+              e.currentTarget.src = "/logo.png";
+
+            }}
+            src={session?.user.image as string ?? "/logo.png"}
+            
             className="h-full w-full rounded-full object-center"
             height={500}
             width={500}

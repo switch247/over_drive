@@ -18,13 +18,17 @@ import { env } from "process";
 
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-    }),
+    session: ({ session, token }) => {
+      return {
+        ...session,
+        ...token,
+        user: {
+          ...session.user,
+          id: token.id,
+          randomKey: token.randomKey,
+        },
+      };
+    },
     jwt: ({ token, user }) => {
       if (user) {
         token.id = user.id;
@@ -52,7 +56,7 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (user && (await verifyPassword(credentials!.password, user.password ?? ""))) {
-          return { id: user.id, email: user.email };
+          return user;
         }
         return null;
       },
@@ -67,7 +71,8 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/signin",
   },
-
+  secret: process.env.NEXTAUTH_SECRET ?? "test",
+  debug: process.env.NODE_ENV === "development"
 };
 
 

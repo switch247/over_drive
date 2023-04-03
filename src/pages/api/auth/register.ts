@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).end();
   }
 
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
 
   const existingUser = await db.user.findUnique({ where: { email } });
 
@@ -22,6 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const newUser = await db.user.create({
     data: {
       email,
+      name,
       password: hashedPassword,
     },
   });
